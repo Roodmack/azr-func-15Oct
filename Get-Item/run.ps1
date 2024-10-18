@@ -24,3 +24,14 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     StatusCode = [HttpStatusCode]::OK
     Body = $body
 })
+
+
+
+Connect-AzAccount
+
+New-AzADServicePrincipal -DisplayName "azr-sp-func15oct" -Role "contributor" -Scope  "/subscriptions/aef3cca3-9788-4576-aa6a-a95168443808/resourceGroups/AZR-RG-Func15OCT-dev" `
+-AppDescription "Service principal to manage app deployment on git hub f" -KeyCredential -WhatIf
+
+
+
+get-help New-AzADServicePrincipal -Examples

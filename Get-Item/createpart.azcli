@@ -1,0 +1,1 @@
+az add sp create-for-rbac --name "azr-sp-func15oct-github" --role "contributor" --scope  "/subscriptions/aef3cca3-9788-4576-aa6a-a95168443808/resourceGroups/AZR-RG-Func15OCT-dev" --sdk --auth
