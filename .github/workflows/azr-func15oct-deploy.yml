@@ -43,7 +43,6 @@ jobs:
       run: | 
         echo hello words
         git --version
-        echo success()
         env
 
     # # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
@@ -64,8 +63,8 @@ jobs:
   deploy-QA :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
-    needs: build-and-deploy-Dev
-    if: ${{ always() }} # uncomment if you want to execute if first jobs failed
+    #needs: build-and-deploy-Dev
+    if: success() #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
     steps:
     - name: 'get log back'
       run: | 
