@@ -53,12 +53,25 @@ jobs:
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         # publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }} # Remove publish-profile to use Azure RBAC
         
-      # *********************************************Deploy to QA************************************************#
+  # *********************************************Deploy to QA************************************************#
   deploy-QA:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
     needs: build-and-deploy-Dev
-    if: ${{ always() }} # uncomment if you want to execute if first jobs failed
+    #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
+
+    steps:
+    - name: 'get log back'
+      run: | 
+        echo hello words
+        git --version
+
+  # *********************************************Deploy to prod************************************************#
+  deploy-prod:
+    runs-on: windows-latest # For Linux, use ubuntu-latest
+    environment: dev
+    needs: deploy-QA
+    #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
 
     steps:
     - name: 'get log back'
