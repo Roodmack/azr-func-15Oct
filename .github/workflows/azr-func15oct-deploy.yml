@@ -77,7 +77,7 @@ jobs:
   deploy-prod :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     #needs: deploy-QA
-    if: ${{ success() }} # uncomment if you want to execute if first jobs failed
+    if: success() # uncomment if you want to execute if first jobs failed
     environment: dev
     steps:
     - name: 'get log back'
