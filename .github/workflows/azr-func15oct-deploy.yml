@@ -70,7 +70,7 @@ jobs:
   deploy-prod:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
-    #needs: deploy-QA
+    needs: build-and-deploy-Dev
     #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
 
     steps:
