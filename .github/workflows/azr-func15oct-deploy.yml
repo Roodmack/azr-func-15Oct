@@ -31,7 +31,7 @@ env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'       # set this to the path to your function app project, defaults to the repository root
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-Dev:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
      # *********************************************Deploy to Dev ************************************************
@@ -57,12 +57,14 @@ jobs:
   deploy-QA:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
+    needs: build-and-deploy-Dev
+    #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
 
     steps:
-    - name: 'log back'
+    - name: 'get log back'
       run: | 
         echo hello words
-        ls -a
+        git --version
 
           
 
