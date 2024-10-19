@@ -31,7 +31,7 @@ env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'       # set this to the path to your function app project, defaults to the repository root
 
 jobs:
-  build-and-deploy-Dev:
+  build-and-deploy-Dev :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
      # *********************************************Deploy to Dev ************************************************
@@ -54,7 +54,7 @@ jobs:
         # publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }} # Remove publish-profile to use Azure RBAC
         
   # *********************************************Deploy to QA************************************************#
-  deploy-QA:
+  deploy-QA :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
     needs: build-and-deploy-Dev
@@ -67,10 +67,10 @@ jobs:
         git --version
 
   # *********************************************Deploy to prod************************************************#
-  deploy-prod:
+  deploy-prod :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
-    needs: build-and-deploy-Dev
+    needs: deploy-QA
     #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
 
     steps:
