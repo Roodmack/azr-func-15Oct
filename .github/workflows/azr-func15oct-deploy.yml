@@ -70,7 +70,7 @@ jobs:
   deploy-prod:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
-    needs: deploy-QA
+    #needs: deploy-QA
     #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
 
     steps:
@@ -78,6 +78,7 @@ jobs:
       run: | 
         echo hello words
         git --version
+        whoami
 
           
 
