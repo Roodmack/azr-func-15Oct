@@ -64,7 +64,7 @@ jobs:
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
     needs: build-and-deploy-Dev
-    if: success() #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
+    #if: success() #if: ${{ always() }} # uncomment if you want to execute if first jobs failed
     steps:
     - name: 'get log back'
       run: | 
@@ -76,7 +76,7 @@ jobs:
   deploy-prod :
     runs-on: windows-latest # For Linux, use ubuntu-latest
     needs: deploy-QA
-    if: success() # uncomment if you want to execute if first jobs failed
+    #if: success() # uncomment if you want to execute if first jobs failed
     environment: dev
     steps:
     - name: 'get log back'
