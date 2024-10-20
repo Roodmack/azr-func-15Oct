@@ -13,7 +13,7 @@ if (-not $name) {
 }
 
 
-$body = "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+$body = "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response. $(Get-Date)"
 
 if ($name) {
     $body = "Hello, $name. This HTTP triggered function executed successfully."

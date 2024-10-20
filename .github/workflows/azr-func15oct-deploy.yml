@@ -41,19 +41,13 @@ jobs:
     - name: 'Checkout GitHub Action Dev'
       uses: actions/checkout@v4
       
-    - name: 'get script running back'
-      run: | 
-        echo hello words
-        git --version
-        env
-
     # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
     - name: 'Login via Azure CLI Dev'
       uses: Azure/login@v2.2.0
       with:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }} # set up AZURE_RBAC_CREDENTIALS secrets in your repository
      
-    - name: 'Run Azure Functions Action'
+    - name: 'Deploy  Azure Functions to Dev'
       uses: Azure/functions-action@v1.5.1
       id: dev
       with:
@@ -79,7 +73,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS_QA_PROD }} # set up AZURE_RBAC_CREDENTIALS QA secrets in your repository
        # Deploy Func to QA 
-    - name: 'Run Azure Functions Action'
+    - name: 'Deploy Azure Functions to QA'
       uses: Azure/functions-action@v1.5.1
       id: qa
       with:
@@ -95,11 +89,6 @@ jobs:
     #if: success() # uncomment if you want to execute if first jobs failed
     environment: dev
     steps:
-    - name: 'get log back'
-      run: | 
-        echo hello words
-        git --version
-        whoami
     # login  with prod creed
     # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
     - name: 'Login via Azure CLI Prod'
@@ -107,7 +96,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS_QA_PROD }} # set up AZURE_RBAC_CREDENTIALS secrets  for Prod in your repository
        # Deploy Func to prod  
-    - name: 'Run Azure Functions Action'
+    - name: 'Deploy  Azure Functions to Prod'
       uses: Azure/functions-action@v1.5.1
       id: prod
       with:
