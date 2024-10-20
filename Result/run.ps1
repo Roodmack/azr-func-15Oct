@@ -46,7 +46,7 @@ Catch {
     Write-Host "Error"
     Write-Host $_
     $status = [HttpStatusCode]::BadRequest
-    $HTML = "Something went wrong, please try again"
+    $HTML = $TriggerMetadata #"Something went wrong, please try again"
 }
 
 # Associate values to output bindings by calling 'Push-OutputBinding'.
