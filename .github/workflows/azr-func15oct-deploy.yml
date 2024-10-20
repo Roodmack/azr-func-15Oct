@@ -48,7 +48,7 @@ jobs:
         env
 
     # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
-    - name: 'Login via Azure CLI'
+    - name: 'Login via Azure CLI Dev'
       uses: Azure/login@v2.2.0
       with:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }} # set up AZURE_RBAC_CREDENTIALS secrets in your repository
@@ -72,6 +72,11 @@ jobs:
       run: | 
         echo hello words
         git --version
+            # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
+    - name: 'Login via Azure CLI QA'
+      uses: Azure/login@v2.2.0
+      with:
+        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS_QA_PROD }} # set up AZURE_RBAC_CREDENTIALS QA secrets in your repository
         
 
   # *********************************************Deploy to prod************************************************#
@@ -86,7 +91,12 @@ jobs:
         echo hello words
         git --version
         whoami
-
+      
+    # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
+    - name: 'Login via Azure CLI Prod'
+      uses: Azure/login@v2.2.0
+      with:
+        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS_QA_PROD }} # set up AZURE_RBAC_CREDENTIALS secrets  for Prod in your repository
           
 
         
